@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Peluang Dasar – Matematika Dasar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbfbfa;--surface:#f1f2f0;--text:#1c2024;--muted:#5d646b;--line:#dcdfdc;--accent:#1f5c4d;--accent-soft:#dcebe6;--bad:#a23b2f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14181a;--surface:#1d2326;--text:#e8ebea;--muted:#9aa3a8;--line:#2c3438;--accent:#6fc2a8;--accent-soft:#1f3a33;--bad:#e58a7c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14181a;--surface:#1d2326;--text:#e8ebea;--muted:#9aa3a8;--line:#2c3438;--accent:#6fc2a8;--accent-soft:#1f3a33;--bad:#e58a7c;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.7 "IBM Plex Sans",system-ui,sans-serif}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+nav{max-width:860px;margin:0 auto;padding:0 20px;display:flex;gap:22px;overflow-x:auto;white-space:nowrap;font-size:14.5px}
+nav a{color:var(--muted);text-decoration:none;padding:16px 0}
+nav a:hover,nav a:focus-visible{color:var(--accent)}
+main{max-width:720px;margin:0 auto;padding:0 20px 80px}
+.hero{padding:88px 0 56px;border-bottom:1px solid var(--line)}
+.hero{padding:56px 0 48px}
+.hero-grid{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,8vw,4.4rem);line-height:1.05}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.chips a{font-size:14px;color:var(--text);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 14px}
+.chips a:hover{border-color:var(--accent);color:var(--accent)}
+.cta{display:inline-block;margin-top:26px;background:var(--accent);color:var(--bg);text-decoration:none;font-weight:500;font-size:15px;padding:11px 22px;border-radius:6px}
+.cta:hover{opacity:.9}
+.die-wrap{text-align:center}
+.die{width:120px;height:120px;border-radius:24px;border:1.5px solid var(--text);background:var(--surface);display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);padding:18px;place-items:center;cursor:pointer;transition:transform .4s}
+.die i{width:17px;height:17px;border-radius:50%;background:var(--accent);opacity:0}
+.die i.on{opacity:1}
+.die.roll{transform:rotate(180deg) scale(.9)}
+.cap{font-size:13px;color:var(--muted);margin-top:12px;min-height:40px}
+.members{list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px 28px}
+.members li{display:flex;flex-direction:column;border-top:1px solid var(--line);padding-top:8px;margin:0}
+.members span{font-size:15px;font-weight:500}
+.members small{font-size:13.5px;color:var(--muted)}
+.mh{margin-top:36px;font-size:14px;color:var(--muted)}
+@media (max-width:600px){.hero-grid{grid-template-columns:1fr}.die-wrap{text-align:left}.members{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.die{transition:none}}
+.brand{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:40px}
+.brand img{height:64px;width:auto;display:block}
+.brand span{font-size:14px;color:var(--muted);font-weight:500}
+h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;font-weight:600;line-height:1.2;margin:0}
+h1{font-size:clamp(2.4rem,7vw,3.6rem);letter-spacing:-.02em}
+.hero p{color:var(--muted);font-size:1.15rem;margin:20px 0 0;max-width:34em}
+.meta{margin-top:28px;font-size:14px;color:var(--muted)}
+section{padding:56px 0 0}
+h2{font-size:1.75rem;margin-bottom:16px}
+h3{font-size:1.2rem;margin:28px 0 8px}
+p{margin:0 0 14px}
+.formula{background:var(--surface);border-left:3px solid var(--accent);padding:16px 20px;margin:18px 0;font-family:"Source Serif 4",Georgia,serif;font-size:1.25rem;overflow-x:auto}
+.formula small{display:block;font:400 14px "IBM Plex Sans",sans-serif;color:var(--muted);margin-top:4px}
+ul{padding-left:20px;margin:0 0 14px}li{margin-bottom:6px}
+table{border-collapse:collapse;width:100%;font-size:15.5px;margin:16px 0}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--muted);font-size:14px}
+.scroll{overflow-x:auto}
+details{border:1px solid var(--line);border-radius:6px;margin:10px 0;padding:0 16px}
+summary{cursor:pointer;padding:14px 0;font-weight:500}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+details p:last-child{margin-bottom:16px}
+button{font:inherit;font-size:15px;cursor:pointer;border:1px solid var(--line);background:var(--bg);color:var(--text);padding:8px 14px;border-radius:6px}
+button:hover{border-color:var(--accent)}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button.on{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.sim{border:1px solid var(--line);border-radius:6px;padding:20px;margin-top:16px}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.bars{display:flex;align-items:flex-end;gap:10px;height:140px;border-bottom:1px solid var(--line);position:relative}
+.col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;position:relative}
+.bar{width:100%;background:var(--accent);min-height:1px;transition:height .25s}
+.ref{position:absolute;left:0;right:0;border-top:2px dashed var(--bad)}
+.labels{display:flex;gap:10px;font-size:13.5px;color:var(--muted);text-align:center;margin-top:6px}
+.labels div{flex:1}
+.stat{font-size:15px;color:var(--muted);margin-top:14px}
+.stat b{color:var(--text);font-weight:500}
+.q{padding:18px 0;border-bottom:1px solid var(--line)}
+.opts{display:grid;gap:8px;margin-top:10px}
+.opts button{text-align:left}
+.opts button.ok{border-color:var(--accent);background:var(--accent-soft)}
+.opts button.no{border-color:var(--bad)}
+.fb{font-size:15px;margin-top:10px;color:var(--muted)}
+footer{max-width:720px;margin:0 auto;padding:28px 20px 40px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+<header class="top"><nav aria-label="Navigasi">
+<a href="#konsep">Konsep</a><a href="#rumus">Rumus</a><a href="#sifat">Sifat</a><a href="#majemuk">Kejadian majemuk</a><a href="#simulasi">Simulasi</a><a href="#soal">Contoh soal</a><a href="#kuis">Kuis</a>
+</nav></header>
+
+<main>
+<div class="hero">
+<div class="brand">
+<img src="logo-214-universitas-negeri-medan.png" alt="Logo Universitas">
+<span>Kelompok 1</span>
+</div>
+<div class="hero-grid">
+<div>
+<h1>Peluang Dasar</h1>
+<p>Seberapa mungkin sesuatu terjadi? Pelajari cara menghitungnya, dari konsep sampai latihan soal.</p>
+<div class="chips"><a href="#konsep">Konsep</a><a href="#rumus">Rumus</a><a href="#simulasi">Simulasi</a><a href="#kuis">Kuis</a></div>
+<a class="cta" href="#konsep">Mulai belajar</a>
+</div>
+<div class="die-wrap">
+<button class="die" id="die" aria-label="Lempar dadu"></button>
+<div class="cap" id="cap">Klik dadu untuk melempar</div>
+</div>
+</div>
+<div class="meta mh">Mata kuliah Matematika Dasar PSS 26A. Anggota kelompok:</div>
+<ul class="members">
+<li><span>Lastiar Siregar</span><small>4262560022</small></li>
+<li><span>Mazaya Maimuni</span><small>4263560012</small></li>
+<li><span>Esmaris Hutasoit</span><small>4262260012</small></li>
+<li><span>Fadhlan Majid</span><small>4263260014</small></li>
+</ul>
+</div>
+
+<section id="konsep">
+<h2>Konsep dasar</h2>
+<p>Peluang adalah ukuran seberapa mungkin suatu kejadian terjadi. Nilainya berada di antara 0 (mustahil) dan 1 (pasti).</p>
+<div class="scroll"><table>
+<tr><th>Istilah</th><th>Arti</th><th>Contoh (satu dadu)</th></tr>
+<tr><td>Percobaan</td><td>Kegiatan yang hasilnya tidak pasti</td><td>Melempar dadu</td></tr>
+<tr><td>Ruang sampel (S)</td><td>Himpunan semua hasil yang mungkin</td><td>S = {1, 2, 3, 4, 5, 6}</td></tr>
+<tr><td>Titik sampel</td><td>Satu anggota ruang sampel</td><td>Angka 4</td></tr>
+<tr><td>Kejadian (A)</td><td>Himpunan bagian dari ruang sampel</td><td>A = bilangan genap = {2, 4, 6}</td></tr>
+</table></div>
+</section>
+
+<section id="rumus">
+<h2>Rumus peluang</h2>
+<p>Jika setiap hasil memiliki kesempatan yang sama, peluang kejadian A adalah perbandingan banyak hasil yang diinginkan dengan banyak seluruh hasil.</p>
+<div class="formula">P(A) = n(A) / n(S)<small>n(A) = banyak anggota kejadian A, n(S) = banyak anggota ruang sampel</small></div>
+<p>Contoh: peluang muncul bilangan genap pada pelemparan satu dadu adalah 3/6 = 1/2.</p>
+<h3>Frekuensi harapan</h3>
+<p>Perkiraan berapa kali kejadian A terjadi jika percobaan diulang sebanyak n kali.</p>
+<div class="formula">Fh(A) = P(A) × n</div>
+</section>
+
+<section id="sifat">
+<h2>Sifat-sifat peluang</h2>
+<ul>
+<li>0 ≤ P(A) ≤ 1</li>
+<li>P(S) = 1, yaitu kejadian pasti</li>
+<li>P(∅) = 0, yaitu kejadian mustahil</li>
+</ul>
+<h3>Peluang komplemen</h3>
+<p>Komplemen A (ditulis A′) adalah kejadian A tidak terjadi.</p>
+<div class="formula">P(A′) = 1 − P(A)<small>Berguna untuk soal berbunyi “paling sedikit satu”</small></div>
+</section>
+
+<section id="majemuk">
+<h2>Kejadian majemuk</h2>
+<div class="scroll"><table>
+<tr><th>Jenis</th><th>Rumus</th><th>Syarat</th></tr>
+<tr><td>Gabungan (A atau B)</td><td>P(A ∪ B) = P(A) + P(B) − P(A ∩ B)</td><td>Berlaku umum</td></tr>
+<tr><td>Saling lepas</td><td>P(A ∪ B) = P(A) + P(B)</td><td>A dan B tidak mungkin terjadi bersamaan</td></tr>
+<tr><td>Saling bebas (A dan B)</td><td>P(A ∩ B) = P(A) × P(B)</td><td>Terjadinya A tidak memengaruhi B</td></tr>
+</table></div>
+</section>
+
+<section id="simulasi">
+<h2>Simulasi</h2>
+<p>Lakukan percobaan berulang dan perhatikan: semakin banyak percobaan, frekuensi relatif mendekati peluang teoretis (garis putus-putus).</p>
+<div class="sim">
+<div class="row" role="group" aria-label="Pilih benda">
+<button id="mCoin" class="on">Koin</button><button id="mDice">Dadu</button>
+</div>
+<div class="bars" id="bars"></div>
+<div class="labels" id="labels"></div>
+<div class="row" style="margin-top:18px">
+<button data-n="1">Lempar 1×</button><button data-n="10">10×</button><button data-n="100">100×</button><button data-n="1000">1000×</button><button id="reset">Ulangi</button>
+</div>
+<div class="stat" id="stat"></div>
+</div>
+</section>
+
+<section id="soal">
+<h2>Contoh soal</h2>
+<details><summary>1. Dua koin dilempar bersamaan. Berapa peluang muncul dua gambar?</summary>
+<p>Ruang sampel: {AA, AG, GA, GG}, sehingga n(S) = 4.</p>
+<p>Kejadian dua gambar: {GG}, sehingga n(A) = 1.</p>
+<p><b>P(A) = 1/4.</b></p></details>
+<details><summary>2. Dua dadu dilempar. Berapa peluang jumlah mata dadu sama dengan 7?</summary>
+<p>n(S) = 6 × 6 = 36.</p>
+<p>Pasangan berjumlah 7: (1,6), (2,5), (3,4), (4,3), (5,2), (6,1), sehingga n(A) = 6.</p>
+<p><b>P(A) = 6/36 = 1/6.</b></p></details>
+<details><summary>3. Dalam kotak ada 5 bola merah dan 3 bola biru. Dua bola diambil satu per satu dengan pengembalian. Berapa peluang keduanya merah?</summary>
+<p>Pengambilan dengan pengembalian bersifat saling bebas.</p>
+<p>P(merah) = 5/8, sehingga P(merah dan merah) = 5/8 × 5/8 = <b>25/64</b>.</p></details>
+<details><summary>4. Peluang hujan besok 0,3. Berapa peluang tidak hujan? Jika dicatat selama 20 hari, berapa frekuensi harapan hari hujan?</summary>
+<p>P(tidak hujan) = 1 − 0,3 = <b>0,7</b>.</p>
+<p>Fh = 0,3 × 20 = <b>6 hari</b>.</p></details>
+</section>
+
+<section id="kuis">
+<h2>Kuis latihan</h2>
+<div id="quiz"></div>
+<p class="stat" id="score"></p>
+</section>
+</main>
+
+<footer>Dibuat sebagai bahan belajar Matematika Dasar.</footer>
+
+<script>
+// Simulasi
+var mode='coin',counts=[],total=0;
+var cfg={coin:{labels:['Angka','Gambar'],p:.5},dice:{labels:['1','2','3','4','5','6'],p:1/6}};
+function reset(){counts=cfg[mode].labels.map(function(){return 0});total=0;render()}
+function render(){
+ var c=cfg[mode],bars=document.getElementById('bars'),lab=document.getElementById('labels');
+ var max=Math.max(.6,c.p*1.6);
+ if(mode==='dice')max=.4;
+ bars.innerHTML='';lab.innerHTML='';
+ c.labels.forEach(function(l,i){
+  var f=total?counts[i]/total:0;
+  var col=document.createElement('div');col.className='col';
+  col.innerHTML='<div class="bar" style="height:'+Math.min(100,f/max*100)+'%"></div><div class="ref" style="bottom:'+(c.p/max*100)+'%"></div>';
+  bars.appendChild(col);
+  var d=document.createElement('div');d.textContent=l+(total?' ('+(f*100).toFixed(1)+'%)':'');lab.appendChild(d);
+ });
+ document.getElementById('stat').innerHTML=total?'Total percobaan: <b>'+total+'</b>. Peluang teoretis tiap sisi: <b>'+(c.p*100).toFixed(1)+'%</b>.':'Belum ada percobaan. Peluang teoretis tiap sisi: <b>'+(c.p*100).toFixed(1)+'%</b>.';
+}
+function roll(n){var k=cfg[mode].labels.length;for(var i=0;i<n;i++){counts[Math.floor(Math.random()*k)]++;total++}render()}
+document.querySelectorAll('[data-n]').forEach(function(b){b.onclick=function(){roll(+b.dataset.n)}});
+document.getElementById('reset').onclick=reset;
+function setMode(m){mode=m;document.getElementById('mCoin').className=m==='coin'?'on':'';document.getElementById('mDice').className=m==='dice'?'on':'';reset()}
+document.getElementById('mCoin').onclick=function(){setMode('coin')};
+document.getElementById('mDice').onclick=function(){setMode('dice')};
+reset();
+
+// Dadu di header
+(function(){
+ var die=document.getElementById('die'),cap=document.getElementById('cap'),n=0;
+ var map={1:[4],2:[0,8],3:[0,4,8],4:[0,2,6,8],5:[0,2,4,6,8],6:[0,2,3,5,6,8]};
+ for(var i=0;i<9;i++)die.appendChild(document.createElement('i'));
+ function show(v){for(var i=0;i<9;i++)die.children[i].className=map[v].indexOf(i)>-1?'on':''}
+ show(6);
+ die.onclick=function(){
+  var v=1+Math.floor(Math.random()*6);n++;
+  die.classList.add('roll');
+  setTimeout(function(){die.classList.remove('roll');show(v);
+   cap.innerHTML='Lemparan ke-'+n+': muncul '+v+'<br>Peluang tiap sisi = 1/6';},200);
+ };
+})();
+
+// Kuis
+var Q=[
+{q:'Peluang muncul angka prima pada pelemparan satu dadu adalah ...',o:['1/6','1/3','1/2','2/3'],a:2,e:'Bilangan prima: 2, 3, 5, sehingga P = 3/6 = 1/2.'},
+{q:'Nilai peluang suatu kejadian tidak mungkin sebesar ...',o:['0','0,5','1','1,2'],a:3,e:'Peluang selalu berada di antara 0 dan 1.'},
+{q:'Sebuah koin dilempar 80 kali. Frekuensi harapan muncul gambar adalah ...',o:['20','40','60','80'],a:1,e:'Fh = 1/2 × 80 = 40.'},
+{q:'Peluang A = 0,4 dan B = 0,5 dengan A dan B saling bebas. Peluang A dan B terjadi bersamaan adalah ...',o:['0,9','0,2','0,1','0,45'],a:1,e:'P(A ∩ B) = 0,4 × 0,5 = 0,2.'}
+];
+var done=0,right=0,qs=document.getElementById('quiz');
+Q.forEach(function(it,i){
+ var d=document.createElement('div');d.className='q';
+ d.innerHTML='<div>'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="fb"></div>';
+ var box=d.querySelector('.opts');
+ it.o.forEach(function(t,j){
+  var b=document.createElement('button');b.textContent=t;
+  b.onclick=function(){
+   if(d.dataset.done)return;d.dataset.done=1;done++;
+   var bs=box.children;bs[it.a].classList.add('ok');
+   if(j===it.a){right++;d.querySelector('.fb').textContent='Benar. '+it.e}
+   else{b.classList.add('no');d.querySelector('.fb').textContent='Belum tepat. '+it.e}
+   if(done===Q.length)document.getElementById('score').innerHTML='Skor kamu: <b>'+right+' dari '+Q.length+'</b>.';
+  };
+  box.appendChild(b);
+ });
+ qs.appendChild(d);
+});
+</script>
+</body>
+</html>
